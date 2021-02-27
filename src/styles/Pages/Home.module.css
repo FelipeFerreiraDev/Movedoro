@@ -1,3 +1,9 @@
+.containerPrincipal {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    align-content: flex-start;
+}
+
 .container {
     display: flex;
     flex-direction: column;

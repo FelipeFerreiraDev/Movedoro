@@ -11,6 +11,7 @@ import { CountdownProvider } from "../contexts/CountdownContext";
 
 import styles from '../styles/Pages/Home.module.css';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { SideBar } from '../components/SideBar';
 
 
 interface HomeProps {
@@ -21,36 +22,40 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengesCompleted={props.challengesCompleted}>  
-      <div className={styles.container}>
-        <Head>
-          Inicio | movedoro
+    <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengesCompleted={props.challengesCompleted}>
+      <div className={styles.containerPrincipal}>
+      <SideBar />
+        <div className={styles.container}>
+
+          <Head>
+            Inicio | movedoro
         </Head>
 
-        <Experiencebar />
+          <Experiencebar />
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
 
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
       </div>
-    </ChallengesProvider>  
+    </ChallengesProvider>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  
-  
-  const {level, currentExperience, challengesCompleted} = context.req.cookies;
+
+
+  const { level, currentExperience, challengesCompleted } = context.req.cookies;
 
   return {
     props: {
